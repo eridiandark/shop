@@ -1,0 +1,55 @@
+.footer{
+  padding: 0 20px;
+  background: #0a0020;
+  color: white;
+}
+.footerBlock{
+  padding: 30px 0 20px 0;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px 50px;
+}
+.logo{
+  width: 200px;
+  max-width: 100%;
+}
+.footerMenu{
+  a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    &:hover{
+      color: gold;
+      text-decoration: underline;
+    }
+  }
+}
+.socialBlock{
+  display: flex;
+  justify-content: space-between;
+  width: 65px;
+  img{
+    width: 30px;
+  }
+}
+.payIcons{
+  width: 140px;
+  display: flex;
+  justify-content: space-between;
+  img{
+    height: 40px;
+  }
+}
+.copyrightBlock{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid white;
+}
+
+@media (min-width: 1024px) {
+  .footerBlock{
+    grid-template-columns: 220px repeat(3,1fr) auto;
+  }
+}
