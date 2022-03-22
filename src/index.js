@@ -14,6 +14,7 @@ ReactDOM.render(
                 <App />
             </ConnectedRouter>
         </PersistGate>
+        <h1></h1>
     </Provider>,
     document.getElementById("root")
 );
