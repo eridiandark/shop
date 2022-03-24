@@ -1,4 +1,4 @@
-import config from "../configs/config.json";
+import config from "../configs/config.js";
 
 export function testApi(){
     console.log(config);
