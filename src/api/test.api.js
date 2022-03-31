@@ -1,8 +1,22 @@
 import config from "../configs/config.js";
 
-export function testApi(){
-    console.log(config);
-    return fetch(config.backendUrl, {
-        method: "get"
-    }).then(res => res.json())
+export function testApi(data){
+    return fetch(config.backendUrl + '/api/login', {
+        method: "post",
+        headers: new Headers({
+            /*Authorization: accessToken,*/
+            "Content-Type": "application/json",
+        }),
+        body: JSON.stringify(data),
+    });
+}
+
+export function testApi2(accessToken){
+    return fetch(config.backendUrl + '/api/data', {
+        method: "get",
+        headers: new Headers({
+            Authorization: accessToken,
+            "Content-Type": "application/json",
+        }),
+    });
 }

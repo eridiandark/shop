@@ -3,5 +3,6 @@
   "host": "localhost",
   "database": "shop",
   "password": "",
-  "port": 5432
+  "port": 5432,
+  "salt": "2521e5a53935354e400d3fda8d94578f61702305bcb48944dbc6f2cb70191e78329cd637559550d63aa5f7babbee90cea5af9512300ee258cc7376c961fc9344"
 }
