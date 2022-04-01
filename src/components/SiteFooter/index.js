@@ -1,12 +1,14 @@
 import {connect} from "react-redux";
 import styles from './style.module.scss';
 import config from '../../configs/config';
+import logo from '../../assets/images/logo.svg';
+//import visa from '../../assets/icons/visa.svg'
 
 function SiteFooter({}){
     return <footer className={styles.footer}>
         <section className={styles.footerBlock}>
             <a href="">
-                <img className={styles.logo} src={config.backendUrl+'/images/logo.svg'} alt={"Smaki.pub Logo"}/>
+                <img className={styles.logo} src={logo} alt={"Smaki.pub Logo"}/>
             </a>
             <nav className={styles.footerMenu}>
                 <h5>ВИДАВНИЦТВО</h5>

@@ -6,3 +6,10 @@
   flex-direction: column;
   justify-content: space-between;
 }
+.carousel-control-prev-icon{
+  background-image:url("assets/icons/arrow.svg");
+  transform: rotate(180deg);
+}
+.carousel-control-next-icon{
+  background-image:url("assets/icons/arrow.svg");
+}
