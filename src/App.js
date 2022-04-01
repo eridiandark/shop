@@ -3,6 +3,7 @@ import { Route } from "react-router";
 import "./App.scss";
 import HomePage from "./pages/HomePage";
 import AdminPage from "./pages/AdminPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
           </Route>
           <Route exact path={"/admin"}>
               <AdminPage />
+          </Route>
+          <Route exact path={"/login"}>
+              <LoginPage/>
           </Route>
       </>
   );
