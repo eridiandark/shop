@@ -2,7 +2,10 @@ import {connect} from "react-redux";
 import styles from './style.module.scss';
 import config from '../../configs/config';
 import logo from '../../assets/images/logo.svg';
-//import visa from '../../assets/icons/visa.svg'
+import visa from '../../assets/icons/visa.svg';
+import mastercard from '../../assets/icons/mastercard.svg';
+import facebook from "../../assets/icons/Facebook_icon.svg";
+import instagram from "../../assets/icons/Instagram_icon.svg";
 
 function SiteFooter({}){
     return <footer className={styles.footer}>
@@ -30,15 +33,15 @@ function SiteFooter({}){
                 <a href="mailto: info@smaki.pub">info@smaki.pub</a>
             </nav>
             <div className={styles.socialBlock}>
-                <a href="https://www.facebook.com/smakipublishing"><img src={config.backendUrl+'/icons/Facebook_icon.svg'} alt={"https://www.facebook.com/smakipublishing"}/></a>
-                <a href="https://www.instagram.com/smakipublishing/"><img src={config.backendUrl+'/icons/Instagram_icon.svg'} alt={"https://www.instagram.com/smakipublishing/"}/></a>
+                <a href="https://www.facebook.com/smakipublishing"><img src={facebook} alt={"https://www.facebook.com/smakipublishing"}/></a>
+                <a href="https://www.instagram.com/smakipublishing/"><img src={instagram} alt={"https://www.instagram.com/smakipublishing/"}/></a>
             </div>
         </section>
         <section className={styles.copyrightBlock}>
             <span>© 2019-2022 COPYRIGHT | ALL RIGHTS RESERVED | DATA LABS UA, LLC</span>
             <div className={styles.payIcons}>
-                <img src={config.backendUrl + '/icons/visa.svg'} alt={"visa"}/>
-                <img src={config.backendUrl + '/icons/mastercard.svg'} alt={"mastercard"}/>
+                <img src={visa} alt={"visa"}/>
+                <img src={mastercard} alt={"mastercard"}/>
             </div>
         </section>
     </footer>

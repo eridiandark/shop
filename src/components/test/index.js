@@ -2,13 +2,14 @@ import {TEST, TEST2} from "../../redux/actions/test.actions.types";
 import {connect} from "react-redux";
 import {testDataSelector} from "../../redux/selectors/test.selector";
 import {useState} from "react";
+import {LOGIN} from "../../redux/actions/user.actions.types";
 
-function Test({data, testFunc, testFunc2}) {
+function Test({data, login, testFunc2}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const changeEvent = (setter) => (e) => setter(e.currentTarget.value);
-    const submitEvent = () => testFunc(email, password);
+    const submitEvent = () => login(email, password);
 
     return <div>
         {data}
@@ -27,7 +28,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        testFunc: (email, password) => dispatch({type: TEST, data: {email, password}}),
+        login: (email, password) => dispatch({type: LOGIN, data: {email, password}}),
         testFunc2: () => dispatch({type: TEST2})
     };
 };
