@@ -14,10 +14,24 @@ function* login(action) {
             break;
         case 400:
             resp = yield call([response, "json"]);
-            yield put({type: SET_USER_DATA, data: resp});
+            yield put({
+                type: SET_USER_DATA, data: {
+                    ...resp, accessToken: null,
+                    refreshToken: null,
+                    email: null,
+                    role: null,
+                }
+            });
             break;
         default:
-            yield put({type: SET_USER_DATA, data: {errorMessage: `${response.statusText} ${response.status}`}});
+            yield put({
+                type: SET_USER_DATA, data: {
+                    errorMessage: `${response.statusText} ${response.status}`, accessToken: null,
+                    refreshToken: null,
+                    email: null,
+                    role: null,
+                }
+            });
     }
 }
 

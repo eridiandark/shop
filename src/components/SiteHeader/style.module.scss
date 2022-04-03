@@ -1,7 +1,58 @@
-.header{
+.header {
+  display: flex;
+  align-items: center;
   padding: 20px 50px;
   background: #f0f0f0;
 }
-.logo{
+
+.logo {
   width: 200px;
+}
+
+.userDropdownBtn {
+  margin-left: 10px;
+  padding: 0;
+  height: 40px;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+
+  img {
+    height: 100%;
+  }
+
+  &:after {
+    display: none;
+  }
+  &:hover {
+    opacity: .9;
+  }
+  &:focus {
+    opacity: .9;
+    box-shadow: 0 0 0 0.25rem rgba(93, 62, 159, 0.25) !important;
+  }
+}
+
+.userMenu{
+  a{
+    padding: 4px 16px;
+    color: black!important;
+  }
+}
+
+.userLoginBtn {
+  margin-left: 10px;
+  background: #5d3e9f !important;
+  border-color: #5d3e9f !important;
+
+  &:hover {
+    background: lighten(#5d3e9f, 10%) !important;
+    border-color: lighten(#5d3e9f, 10%) !important;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba(93, 62, 159, 0.25) !important;
+    background: lighten(#5d3e9f, 10%) !important;
+    border-color: lighten(#5d3e9f, 10%) !important;
+  }
 }
