@@ -1,12 +1,14 @@
 import React, {useState} from "react";
 import FormLogin from "../../components/FormLogin";
+import FormForgot from "../../components/FormForgot";
+import styles from "./styles.module.scss"
 
 
 export default function LoginPage(){
     const [val, setVal] = useState('login')
     return(
-        <div>
-            {val==='login'?<FormLogin swicher={setVal}/>:<h1>forgot form</h1>}
+        <div className={styles.loginContainer}>
+            {val==='login'?<FormLogin swicher={setVal}/>:<FormForgot swicher={setVal}/>}
         </div>
     )
 
