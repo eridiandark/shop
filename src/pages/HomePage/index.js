@@ -3,7 +3,7 @@ import Test from "../../components/test";
 import SiteFooter from "../../components/SiteFooter";
 import React from "react";
 import styles from "./styles.module.scss";
-import SiteCarousel from "../../components/carousel";
+import SiteCarousel from "../../components/SiteCarousel";
 
 export default function HomePage(){
     const images=["https://avatars.mds.yandex.net/i?id=5601a453b3928cea00d17f34db3fd49e-5879281-images-thumbs&n=13",

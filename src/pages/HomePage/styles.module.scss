@@ -1,6 +1,8 @@
 .pageCon{
   min-height: 100vh;
-  display: flex;
+  /*display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between;*/
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
