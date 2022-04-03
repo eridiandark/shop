@@ -1,0 +1,44 @@
+
+.loginForm {
+  width: 100%;
+  max-width: 600px;
+  border: 2px solid #0d6efc;
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: .8em;
+  background: azure;
+  padding: 1.2em;
+  grid-template-columns: [labels] auto [controls] 1fr;
+}
+
+.loginLabel {
+  grid-column: labels;
+  grid-row: auto;
+}
+
+.loginControl {
+  grid-column: controls;
+  grid-row: auto;
+}
+
+.loginH4 {
+  text-align: center;
+  grid-column: span 2;
+}
+
+/*.login_form {
+  & > div {
+    background: antiquewhite;
+  }
+}*/
+
+/*
+.form_group {
+  display: inline-grid;
+}*/
+
+.spanLinkPassword {
+  color: blue;
+  text-decoration: blue underline;
+  cursor:pointer;
+}

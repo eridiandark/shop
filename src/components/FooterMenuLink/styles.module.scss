@@ -1,0 +1,11 @@
+.footerMenu{
+  a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    &:hover{
+      color: gold;
+      text-decoration: underline;
+    }
+  }
+}
