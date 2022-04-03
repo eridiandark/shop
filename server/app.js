@@ -12,8 +12,8 @@ const accessTokenSecret = crypto.randomBytes(64).toString('hex');
 const refreshTokenSecret = crypto.randomBytes(128).toString('hex');
 const users = {};
 
-app.use('/images', express.static(__dirname + "/public/images"));
-app.use('/icons', express.static(__dirname + "/public/icons"));
+/*app.use('/images', express.static(__dirname + "/public/images"));
+app.use('/icons', express.static(__dirname + "/public/icons"));*/
 app.use(express.json());
 app.use(bodyParser.json());
 
@@ -21,23 +21,25 @@ const authenticateJWT = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if (authHeader) {
-        const token = authHeader.split(' ')[1];
-        if (accessTokens.findIndex(t=>t===token)!==-1) {
-            jwt.verify(token, accessTokenSecret, (err, user) => {
-                if (err) {
-                    return res.sendStatus(403);
-                }
-
+        const token = authHeader/*.split(' ')[1]*/;
+        jwt.verify(token, accessTokenSecret, (err, user) => {
+            if (err) {
+                return res.sendStatus(403);
+            }
+            else if (users[user.email].accessTokens.findIndex(t=>t===token)!==-1) {
                 req.user = user;
                 next();
-            });
-        } else return res.sendStatus(403);
+            }
+            else return res.sendStatus(403);
+        });
+
     } else res.sendStatus(401);
 };
 
 setInterval(()=>Object.keys(users).map(user=>{
     users[user].accessTokens = users[user].accessTokens.filter(t=>jwt.verify(t, accessTokenSecret, err=>!err));
     users[user].refreshTokens = users[user].refreshTokens.filter(t=>jwt.verify(t, refreshTokenSecret, err=>!err));
+    console.log(users[user]);
 }), 2400000);
 
 app.post('/api/login', (request, response) => {
@@ -47,7 +49,6 @@ app.post('/api/login', (request, response) => {
 
     pool.query(`select *
                 from get_user('${email}', '${md5(password + dbConfig.salt)}')`, (err, res) => {
-        console.log({err, res});
         if (res.rows.length) {
             const user = res.rows[0];
             if(!users[user.email]) users[user.email] = {accessTokens: [], refreshTokens: []};
@@ -55,10 +56,9 @@ app.post('/api/login', (request, response) => {
             users[user.email].accessTokens.push(accessToken);
             const refreshToken = jwt.sign({email: user.email, role: user.role}, refreshTokenSecret, {expiresIn: '60m'});
             users[user.email].refreshTokens.push(refreshToken);
-            console.log(users);
             response.json({accessToken, refreshToken, email: user.email, role: user.role})
         } else {
-            response.status(400).json({message: 'Username or password incorrect'});
+            response.status(400).json({errorMessage: 'Username or password incorrect'});
         }
     });
 });
@@ -80,17 +80,13 @@ app.post('/api/token', (request, response) => {
         return response.sendStatus(401);
     }
 
-    if (!refreshTokens.includes(refreshToken)) {
-        return response.sendStatus(403);
-    }
-
     jwt.verify(refreshToken, refreshTokenSecret, (err, user) => {
         if (err) return response.sendStatus(403);
-        else if(users[user.email]){
+        else if(users[user.email].refreshTokens.includes(refreshToken)){
             const newAccessToken = jwt.sign({email: user.email, role: user.role}, accessTokenSecret, {expiresIn: '20m'});
             const newRefreshToken = jwt.sign({email: user.email, role: user.role}, refreshTokenSecret, {expiresIn: '60m'});
-            users[user.email].accessTokens = accessTokens.filter(t => t !== accessToken);
-            users[user.email].refreshTokens = refreshTokens.filter(t => t !== refreshToken);
+            users[user.email].accessTokens = users[user.email].accessTokens.filter(t => t !== accessToken);
+            users[user.email].refreshTokens = users[user.email].refreshTokens.filter(t => t !== refreshToken);
 
             response.json({
                 accessToken: newAccessToken, refreshToken: newRefreshToken

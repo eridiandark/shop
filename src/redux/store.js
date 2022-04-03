@@ -8,6 +8,7 @@ import createRootReducer from "./root-reducer";
 import { createBrowserHistory } from "history";
 import { routerMiddleware } from "connected-react-router";
 import TestSaga from "./sagas/test.saga";
+import UserSaga from "./sagas/user.saga";
 
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [logger, sagaMiddleware];
@@ -27,7 +28,8 @@ export const store = createStore(createRootReducer(history), enhancer);
 
 export function* rootSaga() {
   yield all([
-      TestSaga()
+      TestSaga(),
+      UserSaga()
   ]);
 }
 
